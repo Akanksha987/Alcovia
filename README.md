@@ -1,4 +1,4 @@
-# Alcovia AI Content API
+# Energy AI Content API
 
 FastAPI service that lets authenticated users upload short-form text, generates an AI-powered summary and sentiment analysis, and stores everything in a relational database. The project demonstrates JWT authentication, asynchronous processing, Hugging Face integration, containerization, and a CI/CD pipeline ready for GCP.
 
@@ -24,7 +24,7 @@ pip install -r requirements.txt
 Create a `.env` file with the following keys:
 
 ```
-DATABASE_URL=postgresql+psycopg_async://user:pass@localhost:5432/alcovia
+DATABASE_URL=postgresql+psycopg_async://user:pass@localhost:5432/energy
 SECRET_KEY=super-secret-key
 HUGGINGFACE_API_KEY=hf_xxx   # optional but recommended
 ```
@@ -42,8 +42,8 @@ Visit `http://localhost:8000/docs` for interactive Swagger docs.
 ### 4. Docker (containerized run)
 
 ```bash
-docker build -t alcovia-api .
-docker run --env-file .env -p 8000:8000 alcovia-api
+docker build -t energy-api .
+docker run --env-file .env -p 8000:8000 energy-api
 ```
 
 ## API Documentation
@@ -90,7 +90,7 @@ Use the returned JWT in `Authorization: Bearer <token>` header for protected end
 
 1. **Artifact Build:** GitHub Actions builds and pushes the container to Artifact Registry using a service account key stored in repository secrets.  
 2. **Infrastructure:** Use Terraform or gcloud CLI to create a Cloud SQL (PostgreSQL) instance and a Cloud Run service. Store secrets in Secret Manager and mount them as environment variables.  
-3. **Release:** After CI succeeds, trigger a deploy job (`gcloud run deploy alcovia-api --image=... --region=us-central1 --set-env-vars=...`). Cloud Run provides HTTPS out of the box and scales to zero.  
+3. **Release:** After CI succeeds, trigger a deploy job (`gcloud run deploy energy-api --image=... --region=us-central1 --set-env-vars=...`). Cloud Run provides HTTPS out of the box and scales to zero.
 4. **Networking & Observability:**  
    - Use Cloud Armor or IAP for additional auth policies if needed.  
    - Export logs/metrics to Cloud Logging & Cloud Monitoring, set alerts on 5xx error rate and response latency.  

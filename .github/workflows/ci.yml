@@ -13,9 +13,9 @@ jobs:
       postgres:
         image: postgres:16
         env:
-          POSTGRES_DB: alcovia
-          POSTGRES_USER: alcovia
-          POSTGRES_PASSWORD: alcovia
+          POSTGRES_DB: energy
+          POSTGRES_USER: energy
+          POSTGRES_PASSWORD: energy
         ports:
           - 5432:5432
         options: >-
@@ -24,7 +24,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     env:
-      DATABASE_URL: postgresql+psycopg_async://alcovia:alcovia@localhost:5432/alcovia
+      DATABASE_URL: postgresql+psycopg_async://energy:energy@localhost:5432/energy
       SECRET_KEY: test-secret
     steps:
       - uses: actions/checkout@v4
@@ -58,5 +58,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker image
-        run: docker build -t alcovia-api .
+        run: docker build -t energy-api .
 
